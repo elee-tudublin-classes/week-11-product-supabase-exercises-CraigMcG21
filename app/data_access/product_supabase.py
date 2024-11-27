@@ -14,12 +14,21 @@ supabase: Client = create_client(db_url, db_key)
 
 
 # get all products
-def dataGetProducts():
-    response = (supabase.table("product")
-                .select("*")
-                .order("title", desc=False)
-                .execute()
-    )
+def dataGetProducts(category_id) :
+    # Checking if category_id is greater than 0 and if so returning products for that category
+    if category_id > 0:
+        response = (supabase.table("product")
+                    .select("*, category_id(name)")
+                    .eq("category_id", category_id)
+                    .order("title", desc=False)
+                    .execute()
+        )
+    else:
+        response = (supabase.table("product")
+                    .select("*, category_id(name)")
+                    .order("title", desc=False)
+                    .execute()
+        )
 
     return response.data
 
