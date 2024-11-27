@@ -17,9 +17,9 @@ templates = Jinja2Templates(directory="app/view_templates")
 # handle http get requests for the site root /
 # return the todos page
 @router.get("/", response_class=HTMLResponse)
-async def getProducts(request: Request):
-
-    products = getAllProducts()
+async def getProducts(request: Request, category_id: int = 0):
+    print(category_id)
+    products = getAllProducts(category_id)
     categories = getAllCategories()
 
     # note passing of parameters to the page

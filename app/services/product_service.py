@@ -3,8 +3,8 @@ from app.models.product import Product
 import json
 
 # get list of products from data
-def getAllProducts() :
-    products = dataGetProducts()
+def getAllProducts(category_id) :
+    products = dataGetProducts(category_id)
     return products
 
 def getProduct(id) :
